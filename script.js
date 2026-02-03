@@ -1,6 +1,6 @@
 // API Configuration
-const API_KEY = 'YOUR_API_KEY_HERE'; // Replace with your OMDb API key
-const API_URL = 'https://www.omdbapi.com/';
+const API_KEY = 'a600dc72'; // Replace with your OMDb API key
+const API_URL = ' http://www.omdbapi.com/?i=tt3896198&apikey=a600dc72';
 
 const searchInput = document.getElementById('search-input');
 const searchBtn = document.getElementById('search-btn');
