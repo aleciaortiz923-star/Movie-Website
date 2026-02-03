@@ -1,26 +1,25 @@
-// API Configuration
-const API_KEY = 'a600dc72'; // Replace with your OMDb API key
-const API_URL = ' http://www.omdbapi.com/?i=tt3896198&apikey=a600dc72';
+
+const API_KEY = 'a600dc72'; 
+const API_URL = ' http://www.omdbapi.com/';
 
 const searchInput = document.getElementById('search-input');
 const searchBtn = document.getElementById('search-btn');
 const resultContainer = document.getElementById('result-container');
 const sortSelect = document.getElementById('sort-select');
 
-// Event Listeners
+
 searchBtn.addEventListener('click', performSearch);
 searchInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') performSearch();
 });
 sortSelect.addEventListener('change', () => {
-    // If we have results stored, we could re-sort them without re-fetching
-    // For now, let's just trigger a search if there's a query
+  
     if (searchInput.value.trim()) {
         performSearch();
     }
 });
 
-// Store current results for sorting without re-fetching
+
 let currentResults = [];
 
 async function performSearch() {
@@ -32,20 +31,20 @@ async function performSearch() {
         return;
     }
 
-    // Show loading state
+   
     resultContainer.innerHTML = '<p style="color: white; text-align: center; grid-column: 1/-1;">Searching...</p>';
 
     try {
-        // Construct API URL
+        
         const url = `${API_URL}?apikey=${API_KEY}&s=${encodeURIComponent(query)}&type=movie`;
         
         const response = await fetch(url);
         const data = await response.json();
 
         if (data.Response === "True") {
-            currentResults = data.Search; // Store results
+            currentResults = data.Search; 
             
-            // Sort results
+            
             const sortedResults = sortResults(currentResults, sortValue);
             
             displayMovies(sortedResults);
@@ -81,7 +80,7 @@ function sortResults(movies, sortType) {
             return sorted.sort((a, b) => parseInt(b.Year) - parseInt(a.Year));
         case 'oldest':
             return sorted.sort((a, b) => parseInt(a.Year) - parseInt(b.Year));
-        default: // 'relevance' - API returns by relevance usually, so just return original order
+        default: 
             return sorted;
     }
 }
@@ -103,7 +102,7 @@ function displayMovies(movies) {
         const movieCard = document.createElement('div');
         movieCard.classList.add('movie-card');
         
-        // Handle missing posters
+       
         const posterSrc = movie.Poster !== "N/A" ? movie.Poster : "https://via.placeholder.com/300x450?text=No+Poster";
         
         movieCard.innerHTML = `
