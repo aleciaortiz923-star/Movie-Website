@@ -1,6 +1,6 @@
 
 const API_KEY = 'a600dc72'; 
-const API_URL = ' http://www.omdbapi.com/';
+const API_URL = ' https://www.omdbapi.com/';
 
 const searchInput = document.getElementById('search-input');
 const searchBtn = document.getElementById('search-btn');
